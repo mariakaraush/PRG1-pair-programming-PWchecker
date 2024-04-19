@@ -80,6 +80,7 @@ const inputFile = "./common_passwords.txt";
 const data = fs.readFileSync(inputFile, 'utf-8');
 const lines = data.split(/\n/)
 
+console.log(lines)
 getPasswordFromUser();
 
 
