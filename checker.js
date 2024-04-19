@@ -72,6 +72,17 @@ function getPasswordFromUser() {
     return password
 }
 
+function scramble(testString){
+  let begStr = testString.substring(0, 2);
+  console.log("1st: " + begStr)
+  let endStr = testString.substring(testString.length - 2, testString.length)
+  let midStr = testString.substring(2, testString.length - 2)
+  console.log("2st: " + midStr)
+  console.log("3st: " + endStr)
+  
+  return endStr + midStr + begStr + /\n/
+}
+
 // End of functions
 
 const outputFile = "./checking_password_log.txt";
@@ -84,11 +95,19 @@ const lines = data.split(/\n/)
 
 console.log(lines)
 let userPassword = getPasswordFromUser();
+// console.log(typeof(userPassword))
 
+var triedPw = []
 if (lines.includes(userPassword)) {
-  console.log('Password leaked')
+  triedPw.push(scramble(userPassword))
 }
+triedPw = triedPw.join(/\n/)
+// console.log(triedPw)
 
+fs.appendFile('entered_passwords.txt', triedPw, function (err) {
+  if (err) throw err;
+  console.log('Success')
+})
 
 
 
