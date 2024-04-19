@@ -76,6 +76,10 @@ function getPasswordFromUser() {
 const outputFile = "./checking_password_log.txt";
 
 // Enter code to read in the 25 most common passwords from the text file here.
+const inputFile = "./common_passwords.txt";
+const data = fs.readFileSync(inputFile, 'utf-8');
+const lines = data.split(/\n/)
+
 getPasswordFromUser();
 
 
